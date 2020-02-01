@@ -29,10 +29,10 @@
 
 <script>
 import Noty from 'noty';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import { mapActions } from 'vuex';
-import userService from '../services/UserService';
-import { messageOptions } from '../constants';
+import userService from '../../services/UserService';
+import { messageOptions } from '../../constants';
 
 export default {
   name: 'LoginModal',
@@ -51,13 +51,12 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['setUser']),
+    ...mapActions(['setUser', 'setJwt']),
     async handleSubmit(bvModalEvt) {
       try {
-        const { data: loginData } = await userService.login(this.formData);
-        console.log(loginData);
-        Cookies.set('jwt', loginData.jwtToken);
-        this.setUser(loginData.user);
+        const { jwtToken, user } = await userService.login(this.formData);
+        this.setJwt(jwtToken);
+        this.setUser(user);
         this.$router.push({ name: 'dashboard' });
       } catch (error) {
         new Noty({
@@ -68,11 +67,7 @@ export default {
         bvModalEvt.preventDefault();
         return;
       }
-      new Noty({
-        ...messageOptions,
-        type: 'success',
-        text: 'User was successfully logged in',
-      }).show();
+      this.$router.push('/dashboard');
     },
   },
 };

@@ -57,8 +57,8 @@
 <script>
 import Noty from 'noty';
 // import Cookies from 'js-cookie';
-import userService from '../services/UserService';
-import { messageOptions } from '../constants';
+import userService from '../../services/UserService';
+import { messageOptions } from '../../constants';
 
 export default {
   name: 'LoginModal',

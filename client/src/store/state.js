@@ -1,5 +1,4 @@
-import Cookies from 'js-cookie';
-
 export default {
-  user: Cookies.get('jwt'),
+  user: null,
+  jwt: null,
 };
