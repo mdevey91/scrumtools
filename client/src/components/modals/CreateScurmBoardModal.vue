@@ -53,8 +53,7 @@ export default {
         return;
       }
       try {
-        const { session: retroBoard } = await retroBoardService.createScrumBoard(this.formData);
-        console.log('created new scrum retro board', retroBoard);
+        const retroBoard = await retroBoardService.createScrumBoard(this.formData);
         this.setCurrentScrumBoard(retroBoard);
       } catch (error) {
         console.warn(error);

@@ -12,9 +12,21 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'linebreak-style': ["error", "windows"],
     'import/no-unresolved': 'off',
-    'max-len': [2, { 'code': 120 }],
+    'max-len': [2, { 'code': 150 }],
   },
   parserOptions: {
     parser: 'babel-eslint',
   },
+  settings: {
+    "import/resolver": {
+      "import/extensions": [
+        ".js",
+        ".jsx",
+        ".mjs",
+        ".ts",
+        ".tsx",
+        ".vue"
+      ]
+    }
+  }
 };

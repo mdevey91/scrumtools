@@ -3,22 +3,25 @@
     <h1>User dashboard page!!</h1>
     <b-button @click="handleRetroBoardCreation">Create Retro Board</b-button>
     <createScrumBoardModal :showModal="showScrumBoardModal" @close="handleClose"/>
+    <StickyNote/>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
 import createScrumBoardModal from '../components/modals/CreateScurmBoardModal.vue';
+import StickyNote from '../components/StickyNote.vue';
 
 export default {
   name: 'dashboard',
+  components: {
+    createScrumBoardModal,
+    StickyNote,
+  },
   data() {
     return {
       showScrumBoardModal: false,
     };
-  },
-  components: {
-    createScrumBoardModal,
   },
   computed: {
     ...mapState(),
@@ -27,9 +30,6 @@ export default {
     ...mapActions([]),
     async handleRetroBoardCreation() {
       this.showScrumBoardModal = true;
-      // console.log('called handleRetroBoardCreation!');
-      // const resp = await retroBoardService.createScrumBoard();
-      // console.log('response from retroBoardService.createScrumBoard(): ', resp);
     },
     handleClose() {
       this.showScrumBoardModal = false;
